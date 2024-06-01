@@ -1,0 +1,18 @@
+{% extends 'timelapse/main.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center text-center w-25 mt-5 mx-auto">
+            <div class="col align-items-center h-100 w-100">
+                <div class="bg-darkmint text-orange w-auto p-1 m-2"><p class="h1">Login!</p></div>
+                <form method="POST"> {% csrf_token %}
+                    <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+                    <span class="m-1 p-1">{{ form.username }}</span>
+                    <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+                    <span class="m-1 p-1">{{ form.password }}</span>
+                    <button type="button" class="btn btn-light bg-darkmint outline-darkmint text-light m-2" id="btn" value="Login">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

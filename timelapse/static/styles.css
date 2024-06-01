@@ -3,5 +3,21 @@ body {
 }
 
 .bg-mint {
-    background-color: #00FFC2 !important;
+    background-color: #00c18c !important;
+}
+
+.bg-darkmint {
+    background-color: #264B42 !important
+}
+
+.text-mint {
+    color: #00c18c !important;
+}
+
+.text-orange {
+    color: #FFC100 !important;
+}
+
+.outline-darkmint {
+    border-color: #264B42 !important;
 }

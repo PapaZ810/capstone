@@ -56,7 +56,7 @@ ROOT_URLCONF = 'capstone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'capstone/templates'],
+        'DIRS': [BASE_DIR / 'capstone/../timelapse/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
