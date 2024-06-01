@@ -8,6 +8,8 @@ class IndexView(TemplateView):
     template_name = 'timelapse/index.html'
 
 
-class UploadView(TemplateView):
+class UploadView(FormView):
     template_name = 'timelapse/upload.html'
+    success_url = '/'
+
 
