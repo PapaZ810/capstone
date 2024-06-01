@@ -1,0 +1,15 @@
+{% extends "timelapse/main.html" %}
+{% block title %}
+    Home 
+{% endblock title %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 align-items-center h-auto w-auto">
+                <p class="h1 text-dark">Timelapse App</p>
+                <button class="btn btn-light btn-lg text-dark" onclick="window.location.href='upload'">Upload</button>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

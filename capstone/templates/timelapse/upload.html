@@ -1,0 +1,18 @@
+{% extends "timelapse/main.html" %}
+{% block Title %} Upload {% endblock Title %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 align-items-center h-auto w-auto">
+            <p class="h1 text-dark">Upload</p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="video" class="form-label">Video</label>
+                    <input type="file" class="form-control" id="video" name="video">
+                </div>
+                <button type="submit" class="btn btn-light btn-lg text-dark">Upload</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
