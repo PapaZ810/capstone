@@ -1,4 +1,4 @@
-from .forms import *
+from django.shortcuts import render
 from django.views.generic import *
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -8,13 +8,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class IndexView(TemplateView, LoginRequiredMixin):
-    login_url = '/'
+class IndexView(TemplateView):
     template_name = 'timelapse/index.html'
 
 
 class UploadView(FormView, LoginRequiredMixin):
     login_url = '/'
+class UploadView(FormView):
     template_name = 'timelapse/upload.html'
     form_class = UploadForm
     success_url = '/index/'
@@ -41,4 +41,6 @@ class LoginView(FormView):
             print("Invalid username or password")
             form.add_error(None, "Invalid username or password")
             return self.form_invalid(form)
+    success_url = '/'
+
 
