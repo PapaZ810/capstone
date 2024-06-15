@@ -30,7 +30,6 @@ class LoginView(FormView):
     def form_valid(self, form):
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
-        print('god help me')
 
         user = authenticate(self.request, username=username, password=password)
 
@@ -38,7 +37,6 @@ class LoginView(FormView):
             login(self.request, user)
             return super().form_valid(form)
         else:
-            print("Invalid username or password")
             form.add_error('password', "Invalid username or password")
             return self.form_invalid(form)
 
