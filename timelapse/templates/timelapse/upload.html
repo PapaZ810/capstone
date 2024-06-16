@@ -9,8 +9,7 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="video" class="form-label">Video</label>
-                        <input type="file" class="form-control" id="video" name="video">
+                        {{ form.as_p }}
                     </div>
                     <button type="submit" class="btn bg-darkmint btn-lg text-orange">Upload</button>
                 </form>

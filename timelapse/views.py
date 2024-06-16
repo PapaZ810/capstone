@@ -1,5 +1,4 @@
 from .forms import *
-from django.shortcuts import render
 from django.views.generic import *
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -12,6 +11,12 @@ class IndexView(LoginRequiredMixin, TemplateView):
     template_name = 'timelapse/index.html'
 
 
+def handle_uploaded_file(f):
+    with open('C:/Users/capta/python/capstone/timelapse/static/images/' + f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
 class UploadView(LoginRequiredMixin, FormView):
     login_url = '/'
     template_name = 'timelapse/upload.html'
@@ -19,7 +24,17 @@ class UploadView(LoginRequiredMixin, FormView):
     success_url = '/index/'
 
     def form_valid(self, form):
-        return super(UploadView, self).form_valid(form)
+        if self.request.method == 'POST':
+            form = UploadForm(self.request.POST, self.request.FILES)
+            if form.is_valid():
+                handle_uploaded_file(self.request.FILES['image'])
+                x = form.save(commit=False)
+                x.user = self.request.user
+                print("holy")
+                x.save()
+                return render(self.request, 'timelapse/index.html')
+        else:
+            form = UploadForm()
 
 
 class LoginView(FormView):
