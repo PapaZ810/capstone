@@ -56,3 +56,12 @@ class LoginView(FormView):
             return self.form_invalid(form)
 
 
+class ImagesView(LoginRequiredMixin, ListView):
+    login_url = '/'
+    model = Image
+    template_name = 'timelapse/images.html'
+    context_object_name = 'images'
+
+    def get_queryset(self):
+        return Image.objects.filter(user=self.request.user)
+
