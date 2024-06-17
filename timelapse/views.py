@@ -30,7 +30,6 @@ class UploadView(LoginRequiredMixin, FormView):
                 handle_uploaded_file(self.request.FILES['image'])
                 x = form.save(commit=False)
                 x.user = self.request.user
-                print("holy")
                 x.save()
                 return render(self.request, 'timelapse/index.html')
         else:
