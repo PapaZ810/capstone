@@ -2,6 +2,7 @@ from .forms import *
 from django.views.generic import *
 from django.shortcuts import render
 from django.http import HttpResponse
+from capstone.settings import MEDIA_ROOT
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -12,7 +13,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 
 def handle_uploaded_file(f):
-    with open('C:/Users/capta/python/capstone/timelapse/static/images/' + f.name, 'wb+') as destination:
+    with open(MEDIA_ROOT.__str__().replace('\\', '/') + '/' + f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
