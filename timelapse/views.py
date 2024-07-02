@@ -18,7 +18,7 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
-class UploadView(FormView):  # LoginRequiredMixin
+class UploadView(FormView):  # LoginRequiredMixin,
     login_url = '/'
     template_name = 'timelapse/upload.html'
     form_class = UploadForm
