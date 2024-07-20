@@ -10,6 +10,10 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         {{ form.as_p }}
+{#                        {{ form.user.label_tag }}#}
+{#                        {{ form.user }}#}
+{#                        {{ form.image.label_tag }}#}
+{#                        {{ form.image }}#}
                     </div>
                     <button type="submit" class="btn bg-darkmint btn-lg text-orange">Upload</button>
                 </form>

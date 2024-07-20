@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from capstone.settings import MEDIA_ROOT
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -18,11 +20,12 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class UploadView(FormView):  # LoginRequiredMixin,
     login_url = '/'
     template_name = 'timelapse/upload.html'
     form_class = UploadForm
-    success_url = '/index/'
+    success_url = '/home/'
 
     def form_valid(self, form):
         if self.request.method == 'POST':
