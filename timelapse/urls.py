@@ -8,6 +8,7 @@ urlpatterns = [
     path('home/', IndexView.as_view(), name='index'),
     path('upload/', UploadView.as_view(), name='upload'),
     path('images/', ImagesView.as_view(), name='images'),
+    path('csrf/', send_csrf, name='csrf'),
 ]
 
 if settings.DEBUG:

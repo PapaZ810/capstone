@@ -1,8 +1,10 @@
+from django.middleware.csrf import get_token
+
 from .forms import *
 from django.views.generic import *
 from django.shortcuts import render
-from django.http import HttpResponse
 from capstone.settings import MEDIA_ROOT
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -20,7 +22,11 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
-@method_decorator(csrf_exempt, name='dispatch')
+def send_csrf(request):
+    return JsonResponse({'csrfToken': get_token(request)})
+
+
+#@method_decorator(csrf_exempt, name='dispatch')
 class UploadView(FormView):  # LoginRequiredMixin,
     login_url = '/'
     template_name = 'timelapse/upload.html'
@@ -38,6 +44,7 @@ class UploadView(FormView):  # LoginRequiredMixin,
                 return render(self.request, 'timelapse/index.html')
         else:
             form = UploadForm()
+            print(form.errors)
 
 
 class LoginView(FormView):
