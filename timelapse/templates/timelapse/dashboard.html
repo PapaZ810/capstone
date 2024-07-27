@@ -1,0 +1,42 @@
+{% extends 'timelapse/main.html' %}
+{% load static %}
+{% block title %}Dashboard | Device Name{% endblock title %}
+{% block head %}
+    <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock head %}
+{% block content %}
+    <button class="position-absolute btn btn-light bg-darkmint outline-darkmint text-light btn-lg m-3 end-0" onclick="window.location.href='/home'">Home</button>
+    <div class="containter">
+        <div class="row justify-content-center text-center">
+            <div class="col-12 align-items-center h-auto w-75">
+                <div class="bg-darkmint text-orange w-auto p-1 m-2">
+                    <p class="h1">Dashboard</p>
+                </div>
+                <div class="btn-group m-2">
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                </div>
+                <div class="btn-group m-2">
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                </div>
+                <div class="btn-group m-2">
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                </div>
+                <div class="btn-group m-2">
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                    <button class="btn btn-lg bg-darkmint outline-darkmint text-light" onclick="">Do things</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,9 +1,9 @@
-from django.middleware.csrf import get_token
-
+import json
 from .forms import *
 from django.views.generic import *
 from django.shortcuts import render
 from capstone.settings import MEDIA_ROOT
+from django.middleware.csrf import get_token
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -26,8 +26,23 @@ def send_csrf(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
 
-#@method_decorator(csrf_exempt, name='dispatch')
-class UploadView(FormView):  # LoginRequiredMixin,
+def get_instructions(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            send_instructions(request, data)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    else:
+        return JsonResponse({'error': 'This endpoint only accepts POST requests'})
+
+
+def send_instructions(request, json_data):
+    return JsonResponse({'pictures': json_data})
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UploadView(LoginRequiredMixin, FormView):
     login_url = '/'
     template_name = 'timelapse/upload.html'
     form_class = UploadForm
@@ -42,9 +57,11 @@ class UploadView(FormView):  # LoginRequiredMixin,
                 x.user = self.request.user
                 x.save()
                 return render(self.request, 'timelapse/index.html')
+            else:
+                print(form.errors)
+                print(form.cleaned_data)
         else:
             form = UploadForm()
-            print(form.errors)
 
 
 class LoginView(FormView):
@@ -75,3 +92,7 @@ class ImagesView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Image.objects.filter(user=self.request.user)
 
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    login_url = '/'
+    template_name = 'timelapse/dashboard.html'
