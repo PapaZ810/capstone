@@ -30,15 +30,17 @@ def get_instructions(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
+            print(data.get('instructions'))
             send_instructions(request, data)
+            return JsonResponse({'success': 'Instructions received'})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
     else:
         return JsonResponse({'error': 'This endpoint only accepts POST requests'})
 
 
-def send_instructions(request, json_data):
-    return JsonResponse({'pictures': json_data})
+def send_instructions(request, json_data: json):
+    return JsonResponse(json_data)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
