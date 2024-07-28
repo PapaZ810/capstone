@@ -11,6 +11,7 @@ urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('csrf/', send_csrf, name='csrf'),
     path('instructions/', get_instructions, name='instructions'),
+    path('receive/', send_instructions, name='receive'),
 ]
 
 if settings.DEBUG:

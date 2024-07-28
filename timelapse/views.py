@@ -26,11 +26,12 @@ def send_csrf(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 def get_instructions(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
-            print(data.get('instructions'))
+            print(data.get('instruction'))
             send_instructions(request, data)
             return JsonResponse({'success': 'Instructions received'})
         except json.JSONDecodeError:
@@ -39,8 +40,10 @@ def get_instructions(request):
         return JsonResponse({'error': 'This endpoint only accepts POST requests'})
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 def send_instructions(request, json_data: json):
-    return JsonResponse(json_data)
+    print(json_data)
+    return JsonResponse(json_data, status=200)
 
 
 @method_decorator(csrf_exempt, name='dispatch')

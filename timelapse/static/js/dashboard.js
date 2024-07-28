@@ -1,25 +1,29 @@
 
 
 function handleButtons(buttonId) {
+    let action;
     switch (buttonId) {
         case 'capture':
-            fetch('/instructions/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
-                },
-                body: JSON.stringify({'instruction': 'capture'})
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to send capture instruction');
-                }
-                return response.json();
-            })
+            action = 'capture';
+            break;
      }
+     fetch('/instructions/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({'instruction': action})
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to send' + action + 'instruction');
+            }
+            return response.json();
+        })
 }
 
 
+// stolen from ZenSpelling, thank you Makenna!
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
